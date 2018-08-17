@@ -6,7 +6,7 @@ this a snapshot from works in progress
 
 clone repo, and `npm i` to install dependencies;  you also need `>CUDA 9.1`
 
-[100](./100.png)
+![100](./100.png)
 
 # network
 

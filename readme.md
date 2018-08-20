@@ -4,9 +4,10 @@ this a snapshot from works in progress
 
 100% prediction of 10K mnist samples may be attained with this example, else > 99%
 
-[install](#install)
-[network](#network)
-[notes](#notes]
+
+* [install](#install)
+* [network](#network)
+* [notes](#notes)
 
 ![100](./100.png)
 

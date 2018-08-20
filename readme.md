@@ -2,7 +2,7 @@
 
 this a snapshot from works in progress
 
-100% prediction of 10K mnist samples may be attained with this example, else > 99%
+100% prediction of 10K mnist samples may be attained with this example
 
 
 * [install](#install)

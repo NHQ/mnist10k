@@ -92,7 +92,7 @@ function test(input){
   var correct = 0
   var wrong = 0
   for(var x = 0; x < test_count; x++){
-    var d = mnist.nextTrainBatch(1)
+    var d = mnist.nextTestBatch(1)
     batch.push(d.image)
     labels.push(d.label) 
   }

@@ -12,7 +12,7 @@ var input_shape = [batch_size,784]
 var test_count = 10000
 
 // 3 layer basic convolution (size is kernal, depth is number of filters)
-var convo = conv({input_shape, layers:[{size: [3, 3], depth:10, activation: 'relu'}, {size: [3,3], depth: 1, activation: 'relu'}]})
+var convo = conv({input_shape, layers:[{size: [3, 3], depth:10, activation: 'relu'}, {size: [1,1], depth: 1, activation: 'relu'}]})
 
 // layers for the dense network
 var encode_layers = [{size: 256}, {size: 10, activation: 'linear'}]

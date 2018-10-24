@@ -5,17 +5,17 @@ const tf = $.tf
 var mnist = require('./data.js') 
 
 //  training variables
-var batch_size = 56
-var epochas = 13
+var batch_size = 256
+var epochas = 13 * 8 
 var sample_count = 10000 // using 10k training samples
 var input_shape = [batch_size,784]
 var test_count = 10000
 
 // 3 layer basic convolution (size is kernal, depth is number of filters)
-var convo = conv({input_shape, layers:[{size: [3, 3], depth:10, activation: 'relu'}, {size: [1,1], depth: 1, activation: 'relu'}]})
+var convo = conv({input_shape, layers:[{size: [1, 1], depth:64, activation: 'relu'}, {size: [3,3], depth: 32}, {size: [9,9], depth: 1, activation: 'relu'}]})
 
 // layers for the dense network
-var encode_layers = [{size: 256}, {size: 10, activation: 'linear'}]
+var encode_layers = [{size: 256 * 4}, {size: 10, activation: 'linear'}]
 
 // dense encoder
 var encoder = dense({input_shape, layers: encode_layers})
@@ -33,6 +33,7 @@ async function load_and_run(){
 }
 
 function feed_fwd(input, train, size){
+
   var conv = convo.flow(input, train)
 
   // flatten for dense layers
@@ -99,17 +100,19 @@ function test(input){
   console.log('\n***************************  TESTING  ************************************\n')
   
   batch.forEach((input, i) => {
+    tf.tidy(()=>{
     var {encoding} = feed_fwd(input, false, 1)
     let loss = tf.losses.softmaxCrossEntropy(labels[i], encoding)
     let p = tf.argMax(encoding, 1).dataSync()[0]
     let a = tf.argMax(labels[i], 1).dataSync()[0]
     if(p==a) correct++
     else wrong++
-    let m = `precidicted: ${p} \nactual: ${a}` 
-    //console.log(m)
-//    encoding.print()
-//    labels[i].print()
+//    let m = `precidicted: ${p} \nactual: ${a}\nloss:${(tf.mean(loss).dataSync()[0])}` 
+//    console.log(m)
+  //  encoding.print()
+  //  labels[i].print()
   //  tf.mean(loss).print()
+  })
   })
   console.log(`correct: ${correct}, wrong: ${wrong}, percentage: ${(correct/(correct+wrong)*100)}`)
   console.log('\n\n\n')

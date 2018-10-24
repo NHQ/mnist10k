@@ -1,9 +1,10 @@
 # mnist 10k
 
-this a snapshot from works in progress
+This is a micro-framework for neural nets (dense, recurrent, conv) written from base matrix operations using tensorflow.  
 
-100% prediction of 10K mnist samples may be attained with this example
+97% prediction of 10K mnist samples may be attained with this example, which uses a relatively small network (see below)
 
+100% overfitting also possible AMA
 
 * [install](#install)
 * [network](#network)
